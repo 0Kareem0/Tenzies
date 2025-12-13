@@ -4,7 +4,6 @@ import { nanoid } from "nanoid"
 
 export default function App() {
    const [dice, setDice] = useState(generateAllNewDice());
-
     function generateAllNewDice() {
         return new Array(10)
             .fill(0)
@@ -22,11 +21,12 @@ export default function App() {
     }
 
   function rollDice(){
-    setDice(generateAllNewDice());
+    setDice(oldDice => oldDice.map(die => die.isHeld ? die : {...die,value:Math.ceil(Math.random() * 6)}))
   }
 
+  const gameWon = dice.every(die => die.isHeld && die.value === dice[0].value);
 
-  console.log(generateAllNewDice());
+
   const mappedDice = dice.map(die => <Die
     key={die.id}
     value={die.value}
@@ -39,6 +39,6 @@ export default function App() {
       {mappedDice}
     </div>
 
-    <button onClick={rollDice} className="rollButton">Roll</button>
+    <button onClick={rollDice} className="rollButton">{gameWon ? "New Game" : "Roll"}</button>
   </main>;
 }
