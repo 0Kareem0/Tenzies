@@ -20,7 +20,7 @@ export default function App() {
       setDice(prevDice => prevDice.map(die =>{
         return die.id === id ? {...die, isHeld : !die.isHeld} :die;
       }))
-    }
+    } // die.id is that on die we click on it compare it to the id if they are equal or not
 
   function rollDice(){
     setDice(oldDice => oldDice.map(die => die.isHeld ? die : {...die,value:Math.ceil(Math.random() * 6)}))
@@ -37,6 +37,8 @@ export default function App() {
     hold={() => hold(die.id)}
     />);
 
+    console.log(generateAllNewDice());
+    
   return <main>
             {gameWon && <Confetti />}
             <h1 className="title">Tenzies</h1>
