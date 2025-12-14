@@ -5,7 +5,7 @@ import Confetti from 'react-confetti'
 
 
 export default function App() {
-   const [dice, setDice] = useState(generateAllNewDice());
+   const [dice, setDice] = useState(() => generateAllNewDice());
     function generateAllNewDice() {
         return new Array(10)
             .fill(0)
@@ -23,12 +23,14 @@ export default function App() {
     } // die.id is that on die we click on it compare it to the id if they are equal or not
 
   function rollDice(){
+   {!gameWon ? 
     setDice(oldDice => oldDice.map(die => die.isHeld ? die : {...die,value:Math.ceil(Math.random() * 6)}))
+    : setDice(generateAllNewDice()) } 
   }
 
   const gameWon = dice.every(die => die.isHeld && die.value === dice[0].value);
 
-
+  
 
   const mappedDice = dice.map(die => <Die
     key={die.id}
@@ -37,7 +39,6 @@ export default function App() {
     hold={() => hold(die.id)}
     />);
 
-    console.log(generateAllNewDice());
     
   return <main>
             {gameWon && <Confetti />}
@@ -48,6 +49,6 @@ export default function App() {
     </div>
 
 
-    <button onClick={rollDice} className="rollButton">{gameWon ? "New Game" : "Roll"}</button>
+    <button  onClick={rollDice} className="rollButton">{gameWon ? "New Game" : "Roll"}</button>
   </main>;
 }
