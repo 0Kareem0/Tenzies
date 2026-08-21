@@ -1,0 +1,28 @@
+    /**
+     * Critical thinking time!
+     * 
+     * We want to indicate to the user that the game is over
+     * if (1) all the dice are held, and (2) all the dice have
+     * the same value.
+     * 
+     * How might we do this? Some questions to consider:
+     * 
+     * 1. Do we need to save a `gameWon` value in state? If so, why?
+     *    If not, why not?
+     * no we dont need cuz we have only one components we will
+      just make it react with a text or UI.
+     * but if we want to trigger effects,animation,multiple components react
+     when the game is won 
+     * 
+     * 
+     * 2. Do we need to create a side effect to synchronize the `gameWon`
+     *    value (whether it's in state or not) with the current state of 
+     *    the dice?
+     * no need for a side effect only if we use state 
+         
+     * 
+     * Conclusion:
+     * we are just gonna make a var name gameWon and get every dice in the array
+     and see if all the dice is held and have the same value equal to the array 
+     * 
+     */
